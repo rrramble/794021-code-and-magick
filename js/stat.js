@@ -17,10 +17,10 @@ function renderStatistics (ctx, names, times) {
     color: 'rgba(0, 0, 0, 0.7)'
   };
 
-  var PILE_WIDTH = 40;
-  var PILE_INNER_SPACE = 50;
-  var PILE_MAX_HEIGHT = 150;
-  var PILE_LEFT_MARGIN = 10;
+  var BAR_WIDTH = 40;
+  var BAR_INNER_SPACE = 50;
+  var BAR_MAX_HEIGHT = 150;
+  var BAR_LEFT_MARGIN = 10;
 
   var TEXT_SIZE = 16;
   var TEXT_FONT = HEADER_SIZE + 'px "PT Mono"';
@@ -45,7 +45,7 @@ function renderStatistics (ctx, names, times) {
   var headersArea = areaWithoutMargins(AREA, 20, 0, 0, 10);
   drawHeaders(headersArea);
 
-  var statisticsArea = areaWithoutMargins(AREA, 30, 0, 0, PILE_LEFT_MARGIN);
+  var statisticsArea = areaWithoutMargins(AREA, 30, 0, 0, BAR_LEFT_MARGIN);
   drawStatistics(statisticsArea, names, times);
 
 
@@ -84,9 +84,9 @@ function renderStatistics (ctx, names, times) {
 
   function drawWinner (boundaries, index, textBelow, score, maxScore, colorStyle) {
     var scoreBarArea = {
-      width: PILE_WIDTH,
+      width: BAR_WIDTH,
       height: calcBarHeight(score, maxScore, boundaries.height),
-      x: boundaries.x + index * (PILE_WIDTH + PILE_INNER_SPACE),
+      x: boundaries.x + index * (BAR_WIDTH + BAR_INNER_SPACE),
       yBottom: boundaries.y + boundaries.height - 2 * TEXT_SIZE,
       color: colorStyle
     };
