@@ -21,14 +21,35 @@ function renderStatistics (ctx, names, times) {
   var PILE_INNER_SPACE = 50;
   var PILE_MAX_HEIGHT = 150;
   var PILE_LEFT_MARGIN = 10;
+
   var TEXT_SIZE = 16;
   var TEXT_STYLE = 'black 16px "PT Mono" "PTMono" "PT_Mono"';
+
+  var HEADERS = ['Ура вы победили!', 'Список результатов:'];
+  var HEADER_SIZE = 16;
+  var HEADER_FONT =  HEADER_SIZE + 'px "PT Mono"';
+  var HEADER_COLOR = 'black';
+
   var CURRENT_PLAYER_COLOR_STYLE = 'rgba(255, 0, 0, 1)';
   var CURRENT_PLAYER_NAME = 'Вы';
 
+
+  /*
+   * Main code
+   */
+
   drawCloud(SHADOW);
   drawCloud(AREA);
+
+  var headersArea = areaWithoutMargins(AREA, 20, 0, 0, 10);
+  drawHeaders(headersArea);
+
   drawStatistics(AREA, names, times);
+
+
+  /*
+   * Sub-functions
+   */
 
   function drawCloud (area) {
     drawRectangle(area);
@@ -50,6 +71,15 @@ function renderStatistics (ctx, names, times) {
     }
   };
 
+  function drawHeaders (area) {
+    var x = area.x;
+    for (var i = 0; i < HEADERS.length; i++) {
+      var y = area.y + i * HEADER_SIZE;
+      var text = HEADERS[i];
+      drawText(text, x, y, HEADER_COLOR, HEADER_FONT);
+    }
+  };
+
   function drawWinner (boundaries, index, textBelow, score, maxScore, colorStyle) {
     var pileBar = {
       width: PILE_WIDTH,
@@ -64,7 +94,7 @@ function renderStatistics (ctx, names, times) {
 
     var xBelow = pileBar.x;
     var yBelow = pileBar.y + pileBar.height + TEXT_SIZE;
-    drawText(textBelow, xBelow, yBelow);
+    drawText(textBelow, xBelow, yBelow, TEXT_STYLE);
 
     var xScore = pileBar.x;
     var yScore = pileBar.y - TEXT_SIZE;
@@ -79,14 +109,24 @@ function renderStatistics (ctx, names, times) {
       }
   };
 
-  function drawText (text, x, y) {
-    ctx.fillStyle = TEXT_STYLE;
+  function drawText (text, x, y, colorStyle, fontStyle) {
+    ctx.fillStyle = colorStyle;
+    ctx.font = fontStyle;
     ctx.fillText(text, x, y);
   };
 
   function drawNumber (number, x, y) {
     ctx.fillStyle = TEXT_STYLE;
     ctx.fillText(Math.round(number), x, y);
+  };
+
+  function areaWithoutMargins (area, top, right, bottom, left) {
+    var newArea = Object.assign({}, area);
+    newArea.x = area.x + left;
+    newArea.y = area.y + top;
+    newArea.width = area.width - area.right - area.left;
+    newArea.height = area.height - area.top - area.bottom;
+    return newArea;
   };
 
   function calcBarHeight (score, maxScore, areaHeight) {
