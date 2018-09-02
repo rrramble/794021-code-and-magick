@@ -125,8 +125,8 @@ function renderStatistics (ctx, names, times) {
     var newArea = Object.assign({}, area);
     newArea.x = area.x + left;
     newArea.y = area.y + top;
-    newArea.width = area.width - area.right - area.left;
-    newArea.height = area.height - area.top - area.bottom;
+    newArea.width = area.width - right - left;
+    newArea.height = area.height - top - bottom;
     return newArea;
   };
 
