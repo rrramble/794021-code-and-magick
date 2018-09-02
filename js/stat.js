@@ -100,13 +100,15 @@ function renderStatistics (ctx, names, times) {
   };
 
   function randomColorStyle () {
-    var red = randomInRange(0, 24) * 10;
-    var green = randomInRange(0, 24) * 10;
-    var blue = randomInRange(0, 24) * 10;
-    return '#' + red.toString(16) + green.toString(16) + blue.toString(16);
+    var red = '0';
+    var green = '0';
+    var blue = '255';
+    var alpha = randomInRangeFractional(0.3, 1).toFixed(2);
+    var colorStyle = 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + alpha + ')';
+    return colorStyle;
   };
 
-  function randomInRange (from, to) {
-    return Math.floor(Math.random() * to + from);
+  function randomInRangeFractional (from, to) {
+    return Math.random() * (to - from) + from;
   };
 };
