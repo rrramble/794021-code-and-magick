@@ -50,14 +50,15 @@ function renderStatistics (ctx, names, times) {
     }
   };
 
-  function drawWinner (boundaries, position, textBelow, score, maxScore, colorStyle) {
+  function drawWinner (boundaries, index, textBelow, score, maxScore, colorStyle) {
     var pileBar = {
-      x: boundaries.x + position * (PILE_WIDTH + PILE_INNER_SPACE) + PILE_LEFT_MARGIN,
-      y: boundaries.y + 3 * TEXT_SIZE,
       width: PILE_WIDTH,
       height: calcBarHeight(score, maxScore, boundaries.height),
+      x: boundaries.x + index * (PILE_WIDTH + PILE_INNER_SPACE) + PILE_LEFT_MARGIN,
+      yBottom: boundaries.y + boundaries.height - 2 * TEXT_SIZE,
       color: colorStyle
     };
+    pileBar.y = pileBar.yBottom - pileBar.height,
 
     drawRectangle(pileBar);
 
@@ -91,7 +92,7 @@ function renderStatistics (ctx, names, times) {
   function calcBarHeight (score, maxScore, areaHeight) {
     if (maxScore === 0) return 0;
 
-    var result = (areaHeight - 7 * TEXT_SIZE) / maxScore * score;
+    var result = (areaHeight - 5 * TEXT_SIZE) / maxScore * score;
     return Math.floor(result);
   };
 
