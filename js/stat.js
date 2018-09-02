@@ -45,7 +45,8 @@ function renderStatistics (ctx, names, times) {
   var headersArea = areaWithoutMargins(AREA, 20, 0, 0, 10);
   drawHeaders(headersArea);
 
-  drawStatistics(AREA, names, times);
+  var statisticsArea = areaWithoutMargins(AREA, 30, 0, 0, PILE_LEFT_MARGIN);
+  drawStatistics(statisticsArea, names, times);
 
 
   /*
@@ -85,7 +86,7 @@ function renderStatistics (ctx, names, times) {
     var pileBar = {
       width: PILE_WIDTH,
       height: calcBarHeight(score, maxScore, boundaries.height),
-      x: boundaries.x + index * (PILE_WIDTH + PILE_INNER_SPACE) + PILE_LEFT_MARGIN,
+      x: boundaries.x + index * (PILE_WIDTH + PILE_INNER_SPACE),
       yBottom: boundaries.y + boundaries.height - 2 * TEXT_SIZE,
       color: colorStyle
     };
