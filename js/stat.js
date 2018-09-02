@@ -20,7 +20,14 @@ function renderStatistics (ctx, names, times) {
   var BAR_WIDTH = 40;
   var BAR_INNER_SPACE = 50;
   var BAR_MAX_HEIGHT = 150;
-  var BAR_LEFT_MARGIN = 10;
+  var BAR_LEFT_MARGIN = 40;
+  var BAR_TOP_MARGIN = 55;
+  var BAR_BOTTOM_MARGIN = 10;
+  var BAR_RED_CHANNEL = 0;
+  var BAR_GREEN_CHANNEL = 0;
+  var BAR_BLUE_CHANNEL = 255;
+  var BAR_ALPHA_CHANNEL_MIN = 0.3;
+  var BAR_ALPHA_CHANNEL_MAX = 1.0;
 
   var TEXT_SIZE = 16;
   var TEXT_FONT = HEADER_SIZE + 'px "PT Mono"';
@@ -30,6 +37,8 @@ function renderStatistics (ctx, names, times) {
   var HEADER_SIZE = 16;
   var HEADER_FONT =  HEADER_SIZE + 'px "PT Mono"';
   var HEADER_COLOR = 'black';
+  var HEADER_TOP_MARGIN = 20;
+  var HEADER_LEFT_MARGIN = 60;
 
   var CURRENT_PLAYER_COLOR_STYLE = 'rgba(255, 0, 0, 1)';
   var CURRENT_PLAYER_NAME = 'Вы';
@@ -42,10 +51,10 @@ function renderStatistics (ctx, names, times) {
   drawCloud(SHADOW);
   drawCloud(AREA);
 
-  var headersArea = areaWithoutMargins(AREA, 20, 0, 0, 10);
+  var headersArea = areaWithoutMargins(AREA, HEADER_TOP_MARGIN, 0, 0, HEADER_LEFT_MARGIN);
   drawHeaders(headersArea);
 
-  var statisticsArea = areaWithoutMargins(AREA, 30, 0, 0, BAR_LEFT_MARGIN);
+  var statisticsArea = areaWithoutMargins(AREA, BAR_TOP_MARGIN, 0, BAR_BOTTOM_MARGIN, BAR_LEFT_MARGIN);
   drawStatistics(statisticsArea, names, times);
 
 
@@ -87,7 +96,7 @@ function renderStatistics (ctx, names, times) {
       width: BAR_WIDTH,
       height: calcBarHeight(score, maxScore, boundaries.height),
       x: boundaries.x + index * (BAR_WIDTH + BAR_INNER_SPACE),
-      yBottom: boundaries.y + boundaries.height - 2 * TEXT_SIZE,
+      yBottom: boundaries.y + boundaries.height - TEXT_SIZE,
       color: colorStyle
     };
     scoreBarArea.y = scoreBarArea.yBottom - scoreBarArea.height,
@@ -134,7 +143,7 @@ function renderStatistics (ctx, names, times) {
   function calcBarHeight (score, maxScore, areaHeight) {
     if (maxScore === 0) return 0;
 
-    var result = (areaHeight - 5 * TEXT_SIZE) / maxScore * score;
+    var result = (areaHeight - TEXT_SIZE - TEXT_SIZE) / maxScore * score;
     return Math.floor(result);
   };
 
@@ -143,11 +152,8 @@ function renderStatistics (ctx, names, times) {
   };
 
   function randomColorStyle () {
-    var red = '0';
-    var green = '0';
-    var blue = '255';
-    var alpha = randomInRangeFractional(0.3, 1).toFixed(2);
-    var colorStyle = 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + alpha + ')';
+    var alpha = randomInRangeFractional(BAR_ALPHA_CHANNEL_MIN, BAR_ALPHA_CHANNEL_MAX).toFixed(2);
+    var colorStyle = 'rgba(' + BAR_RED_CHANNEL + ', ' + BAR_GREEN_CHANNEL + ', ' + BAR_BLUE_CHANNEL + ', ' + alpha + ')';
     return colorStyle;
   };
 
