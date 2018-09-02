@@ -99,7 +99,7 @@ function renderStatistics (ctx, names, times) {
       yBottom: boundaries.y + boundaries.height - TEXT_SIZE,
       color: colorStyle
     }
-    scoreBarArea.y = scoreBarArea.yBottom - scoreBarArea.height,
+    scoreBarArea.y = scoreBarArea.yBottom - scoreBarArea.height;
 
     drawRectangle(scoreBarArea);
 
