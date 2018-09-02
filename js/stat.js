@@ -83,23 +83,23 @@ function renderStatistics (ctx, names, times) {
   };
 
   function drawWinner (boundaries, index, textBelow, score, maxScore, colorStyle) {
-    var pileBar = {
+    var scoreBarArea = {
       width: PILE_WIDTH,
       height: calcBarHeight(score, maxScore, boundaries.height),
       x: boundaries.x + index * (PILE_WIDTH + PILE_INNER_SPACE),
       yBottom: boundaries.y + boundaries.height - 2 * TEXT_SIZE,
       color: colorStyle
     };
-    pileBar.y = pileBar.yBottom - pileBar.height,
+    scoreBarArea.y = scoreBarArea.yBottom - scoreBarArea.height,
 
-    drawRectangle(pileBar);
+    drawRectangle(scoreBarArea);
 
-    var xBelow = pileBar.x;
-    var yBelow = pileBar.y + pileBar.height + TEXT_SIZE;
+    var xBelow = scoreBarArea.x;
+    var yBelow = scoreBarArea.y + scoreBarArea.height + TEXT_SIZE;
     drawText(textBelow, xBelow, yBelow, TEXT_COLOR, TEXT_FONT);
 
-    var xScore = pileBar.x;
-    var yScore = pileBar.y - TEXT_SIZE;
+    var xScore = scoreBarArea.x;
+    var yScore = scoreBarArea.y - TEXT_SIZE;
     drawNumber(score, xScore, yScore);
   };
 
