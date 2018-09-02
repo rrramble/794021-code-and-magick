@@ -117,8 +117,8 @@ function renderStatistics (ctx, names, times) {
   };
 
   function drawNumber (number, x, y) {
-    ctx.fillStyle = TEXT_COLOR;
-    ctx.fillText(Math.round(number), x, y);
+    var text = Math.round(number).toString();
+    drawText(text, x, y, TEXT_COLOR, TEXT_SIZE);
   };
 
   function areaWithoutMargins (area, top, right, bottom, left) {
