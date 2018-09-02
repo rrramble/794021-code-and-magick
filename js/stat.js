@@ -98,7 +98,7 @@ function renderStatistics (ctx, names, times) {
       x: boundaries.x + index * (BAR_WIDTH + BAR_INNER_SPACE),
       yBottom: boundaries.y + boundaries.height - TEXT_SIZE,
       color: colorStyle
-    };
+    }
     scoreBarArea.y = scoreBarArea.yBottom - scoreBarArea.height,
 
     drawRectangle(scoreBarArea);
@@ -141,7 +141,9 @@ function renderStatistics (ctx, names, times) {
   };
 
   function calcBarHeight (score, maxScore, areaHeight) {
-    if (maxScore === 0) return 0;
+    if (maxScore === 0) {
+      return 0;
+    }
 
     var result = (areaHeight - TEXT_SIZE - TEXT_SIZE) / maxScore * score;
     return Math.floor(result);
