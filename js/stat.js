@@ -1,6 +1,8 @@
 'use strict';
 
-function renderStatistics(ctx, names, times) {
+window.renderStatistics = exportedFunction;
+
+function exportedFunction(ctx, names, times) {
   var AREA = {
     x: 100,
     y: 10,
