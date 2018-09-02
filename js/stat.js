@@ -23,7 +23,8 @@ function renderStatistics (ctx, names, times) {
   var PILE_LEFT_MARGIN = 10;
 
   var TEXT_SIZE = 16;
-  var TEXT_STYLE = 'black 16px "PT Mono" "PTMono" "PT_Mono"';
+  var TEXT_FONT = HEADER_SIZE + 'px "PT Mono"';
+  var TEXT_COLOR = 'black';
 
   var HEADERS = ['Ура вы победили!', 'Список результатов:'];
   var HEADER_SIZE = 16;
@@ -94,7 +95,7 @@ function renderStatistics (ctx, names, times) {
 
     var xBelow = pileBar.x;
     var yBelow = pileBar.y + pileBar.height + TEXT_SIZE;
-    drawText(textBelow, xBelow, yBelow, TEXT_STYLE);
+    drawText(textBelow, xBelow, yBelow, TEXT_COLOR, TEXT_FONT);
 
     var xScore = pileBar.x;
     var yScore = pileBar.y - TEXT_SIZE;
@@ -116,7 +117,7 @@ function renderStatistics (ctx, names, times) {
   };
 
   function drawNumber (number, x, y) {
-    ctx.fillStyle = TEXT_STYLE;
+    ctx.fillStyle = TEXT_COLOR;
     ctx.fillText(Math.round(number), x, y);
   };
 
