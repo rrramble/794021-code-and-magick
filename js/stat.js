@@ -30,7 +30,7 @@ function renderStatistics (ctx, names, times) {
   var BAR_ALPHA_CHANNEL_MAX = 1.0;
 
   var TEXT_SIZE = 16;
-  var TEXT_FONT = HEADER_SIZE + 'px "PT Mono"';
+  var TEXT_FONT = TEXT_SIZE + 'px "PT Mono"';
   var TEXT_COLOR = 'black';
 
   var HEADERS = ['Ура вы победили!', 'Список результатов:'];
