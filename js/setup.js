@@ -62,8 +62,8 @@ function main() {
   var wizards = createWizards(
       NAMES, SURNAMES, COAT_COLORS, EYES_COLORS, WIZARD_COUNT
   );
-  var wizardsDom = domFromWizards(wizards, SELECTOR_TEMPLATE);
-  renderDom(wizardsDom, SELECTOR_INSERT_DOM_TO);
+  var domWizards = domFromWizards(wizards, SELECTOR_TEMPLATE);
+  renderDom(domWizards, SELECTOR_INSERT_DOM_TO);
   showHtmlSelector('.setup-similar');
 }
 
