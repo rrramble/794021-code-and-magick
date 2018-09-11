@@ -171,9 +171,9 @@ function randomFromList(list) {
   return result;
 }
 
-function randomInRange(start, end, customRandom) {
-  if (customRandom === undefined) {
-    customRandom = Math.random;
+function randomInRange(start, end, randomFunction) {
+  if (randomFunction === undefined) {
+    randomFunction = Math.random;
   };
 
   var randomValue = randomFunction() * (end - start) + start;
