@@ -54,15 +54,18 @@ var EYES_COLORS = [
  * Main logic
  */
 
-var main = (function main() {
+main();
+
+
+function main() {
   showHtmlSelector('.setup');
   var wizards = createWizards(
-    NAMES, SURNAMES, COAT_COLORS, EYES_COLORS, WIZARD_COUNT
+      NAMES, SURNAMES, COAT_COLORS, EYES_COLORS, WIZARD_COUNT
   );
   var wizardsDom = domFromWizards(wizards, SELECTOR_TEMPLATE);
   renderDom(wizardsDom, SELECTOR_INSERT_DOM_TO);
   showHtmlSelector('.setup-similar');
-})();
+}
 
 
 /*
@@ -71,10 +74,10 @@ var main = (function main() {
 
 function createWizards(
     firstNames, surnames, coatColors, eyesColors, wizardCount
-  ) {
+) {
   var result = [];
 
-  for (var i = 0; i < WIZARD_COUNT; i++) {
+  for (var i = 0; i < wizardCount; i++) {
     var wizard = {};
     wizard.name = selectFullName(firstNames, surnames);
     wizard.coatColor = selectCoatColor(coatColors);
@@ -111,7 +114,7 @@ function domFromWizard(wizardData, htmlTemplateSelector) {
 function selectFullName(firstNames, surnames) {
   var firstName = randomFromList(firstNames);
   var surname = randomFromList(surnames);
-  var result = firstName + ' ' + surname;
+  var result = fullName(firstName, surname);
   return result;
 }
 
@@ -137,12 +140,6 @@ function renderDom(domElements, htmlSelector) {
   domSelector.appendChild(domFragment);
 }
 
-function hideHtmlSelector(htmlSelector) {
-  var el = document.querySelector(htmlSelector);
-  var className = htmlClassFromSelector(SELECTOR_HIDDEN);
-  el.classList.add(className);
-}
-
 function showHtmlSelector(htmlSelector) {
   var el = document.querySelector(htmlSelector);
   var className = htmlClassFromSelector(SELECTOR_HIDDEN);
@@ -151,10 +148,6 @@ function showHtmlSelector(htmlSelector) {
 
 function fullName(firstName, secondName) {
   return firstName + ' ' + secondName;
-}
-
-function htmlSelectorFromClass(htmlClass) {
-  return '.' + htmlClass;
 }
 
 function htmlClassFromSelector(htmlSelector) {
@@ -174,7 +167,7 @@ function randomFromList(list) {
 function randomInRange(start, end, randomFunction) {
   if (randomFunction === undefined) {
     randomFunction = Math.random;
-  };
+  }
 
   var randomValue = randomFunction() * (end - start) + start;
   var result = Math.floor(randomValue);
