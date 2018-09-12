@@ -165,7 +165,7 @@ function randomFromList(list) {
 }
 
 function randomInRange(start, end, randomFunction) {
-  if (randomFunction === undefined) {
+  if (!randomFunction) {
     randomFunction = Math.random;
   }
 
